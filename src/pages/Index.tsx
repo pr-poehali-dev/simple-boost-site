@@ -11,7 +11,6 @@ interface Service {
   id: string;
   name: string;
   icon: string;
-  price: number;
   description: string;
 }
 
@@ -25,10 +24,10 @@ interface Order {
 }
 
 const services: Service[] = [
-  { id: 'followers', name: 'Подписчики', icon: 'Users', price: 0.5, description: 'Быстрая накрутка подписчиков' },
-  { id: 'likes', name: 'Лайки', icon: 'Heart', price: 0.3, description: 'Увеличение лайков на постах' },
-  { id: 'views', name: 'Просмотры', icon: 'Eye', price: 0.2, description: 'Накрутка просмотров видео' },
-  { id: 'comments', name: 'Комментарии', icon: 'MessageSquare', price: 1.0, description: 'Качественные комментарии' },
+  { id: 'followers', name: 'Подписчики', icon: 'Users', description: 'Бесплатная накрутка подписчиков' },
+  { id: 'likes', name: 'Лайки', icon: 'Heart', description: 'Увеличение лайков на постах' },
+  { id: 'views', name: 'Просмотры', icon: 'Eye', description: 'Накрутка просмотров видео' },
+  { id: 'comments', name: 'Комментарии', icon: 'MessageSquare', description: 'Качественные комментарии' },
 ];
 
 const Index = () => {
@@ -72,7 +71,7 @@ const Index = () => {
     });
   };
 
-  const totalPrice = selectedService ? (selectedService.price * quantity).toFixed(2) : '0.00';
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
@@ -83,8 +82,12 @@ const Index = () => {
               <h1 className="text-6xl font-heading font-bold mb-2">BoostMax</h1>
             </div>
           </div>
-          <p className="text-xl text-muted-foreground">Профессиональная накрутка социальных сетей</p>
+          <p className="text-xl text-muted-foreground">Бесплатная накрутка социальных сетей</p>
           <div className="flex justify-center gap-4 mt-6">
+            <Badge variant="secondary" className="text-base px-4 py-2">
+              <Icon name="Gift" size={16} className="mr-2" />
+              Бесплатно
+            </Badge>
             <Badge variant="secondary" className="text-base px-4 py-2">
               <Icon name="Zap" size={16} className="mr-2" />
               Быстро
@@ -92,10 +95,6 @@ const Index = () => {
             <Badge variant="secondary" className="text-base px-4 py-2">
               <Icon name="Shield" size={16} className="mr-2" />
               Безопасно
-            </Badge>
-            <Badge variant="secondary" className="text-base px-4 py-2">
-              <Icon name="TrendingUp" size={16} className="mr-2" />
-              Эффективно
             </Badge>
           </div>
         </header>
@@ -129,8 +128,8 @@ const Index = () => {
                           className={selectedService?.id === service.id ? 'text-white' : 'text-foreground'}
                         />
                       </div>
-                      <Badge variant="outline" className="text-sm">
-                        {service.price}₽ / шт
+                      <Badge variant="outline" className="text-sm gradient-primary text-white border-0">
+                        Бесплатно
                       </Badge>
                     </div>
                     <h3 className="text-xl font-heading font-bold mb-2">{service.name}</h3>
@@ -176,12 +175,13 @@ const Index = () => {
                       <span>10000</span>
                     </div>
                   </div>
-                  <div className="bg-muted p-4 rounded-lg">
-                    <div className="flex justify-between items-center text-lg">
-                      <span className="font-medium">Итого:</span>
-                      <span className="font-heading font-bold text-2xl gradient-primary text-transparent bg-clip-text">
-                        {totalPrice} ₽
+                  <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-500 p-4 rounded-lg">
+                    <div className="flex items-center justify-center gap-2">
+                      <Icon name="Gift" size={24} className="text-green-600" />
+                      <span className="font-heading font-bold text-2xl text-green-600">
+                        100% Бесплатно
                       </span>
+                      <Icon name="PartyPopper" size={24} className="text-green-600" />
                     </div>
                   </div>
                   <Button
